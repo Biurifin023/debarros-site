@@ -1,13 +1,11 @@
+import AboutSection from "./components/about.section";
 import HeroSection from "./components/hero-section";
-import Container from "./utils/container";
 
 export default function Home() {
   return (
     <>
       <HeroSection />
-      <Container>
-        <h1></h1>
-      </Container>
+      <AboutSection />
     </>
-  )
+  );
 }
