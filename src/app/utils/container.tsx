@@ -8,7 +8,7 @@ type ContainerProps = HTMLAttributes<HTMLDivElement> & {
 export default function Container({ children, className = "", ...props }: ContainerProps) {
   return (
     <div
-      className={`flex gap-8 h-screen flex-col mx-auto w-full px-6 md:px-14 lg:px-14 ${className}`}
+      className={`mx-auto flex w-full flex-col px-6 md:px-14 lg:px-14 ${className}`}
       {...props}
     >
       {children}

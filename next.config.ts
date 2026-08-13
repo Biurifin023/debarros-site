@@ -1,8 +1,14 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
   reactCompiler: true,
+  turbopack: {
+    rules: {
+      "*.JPG": { type: "asset" },
+      "*.JPEG": { type: "asset" },
+      "*.PNG": { type: "asset" },
+    },
+  },
 };
 
 export default nextConfig;
