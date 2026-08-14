@@ -90,10 +90,12 @@ export default function Portfollio() {
   const currentDot = activeIndex % total;
 
   return (
-    <section id="portfolio" className="w-full bg-surface py-6 md:py-20 lg:py-28">
+    <section id="portfolio" className="w-full bg-surface py-12 md:py-20 lg:py-28">
       <Container>
+        <h2 className="font-mono text-md uppercase text-accent md:text-xl lg:text-xl">Portfólio</h2>
+
         <h1 className="mt-10 font-display text-2xl leading-none text-white md:text-5xl lg:text-6xl">
-          Portfólio
+          Veja alguns trabalhos
         </h1>
 
         <div
@@ -114,7 +116,7 @@ export default function Portfollio() {
             {slides.map((image, index) => (
               <div
                 key={index}
-                className="relative aspect-3/4 w-[calc((100%-0.75rem)/2)] shrink-0 overflow-hidden rounded-lg md:w-[calc((100%-2rem)/3)] md:rounded-2xl lg:w-[calc((100%-4rem)/5)]"
+                className="relative aspect-3/4 w-[calc((100%-0.75rem)/2)] shrink-0 overflow-hidden rounded-md md:w-[calc((100%-2rem)/3)] md:rounded-lg lg:w-[calc((100%-4rem)/5)]"
               >
                 <Image
                   src={image}
