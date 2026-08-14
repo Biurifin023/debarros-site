@@ -11,7 +11,7 @@ export default function Localization() {
                 <div className="mt-10 flex flex-col gap-4 md:flex-row md:items-stretch md:gap-6">
                     <div className="flex w-full flex-col justify-center rounded-md bg-surface p-4 md:w-1/2 md:p-6">
 
-                    <h1 className="font-display text-2xl leading-none text-white md:text-2xl lg:text-4xl mb-4">Informações sobre o local</h1>
+                    <h1 className="font-display text-2xl leading-none text-white md:text-2xl lg:text-4xl mb-4 mt-4">Informações sobre o local</h1>
                         <p className="font-sans text-lg text-muted md:text-base lg:text-lg">
                             Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla ab
                             incidunt, provident facilis harum ducimus eveniet? Omnis placeat
