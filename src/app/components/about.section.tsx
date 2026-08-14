@@ -1,7 +1,12 @@
 import Image from "next/image";
 import profileImage from "@/app/assets/profile-img.jpeg";
+import { Skeleton } from "../utils/skeleton";
 
-export default function AboutSection() {
+type AboutSectionProps = {
+  isLoading?: boolean;
+};
+
+export default function AboutSection({ isLoading = false }: AboutSectionProps) {
   return (
     <section id="sobre" className="w-full">
       <div className="flex w-full flex-col md:flex-row md:items-stretch">
@@ -14,22 +19,36 @@ export default function AboutSection() {
             Conheça o Tatuador
           </h1>
 
-          <p className="font-sans text-lg text-muted md:text-base lg:text-lg">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam,
-            quos. Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            Quisquam, quos. Lorem ipsum dolor sit amet consectetur adipisicing
-            elit. Quisquam, quos.
-          </p>
+          {isLoading ? (
+            <div className="flex flex-col gap-2.5" aria-busy="true" aria-live="polite">
+              <Skeleton className="h-4 w-full" />
+              <Skeleton className="h-4 w-full" />
+              <Skeleton className="h-4 w-11/12" />
+              <Skeleton className="h-4 w-4/5" />
+              <Skeleton className="h-4 w-3/5" />
+            </div>
+          ) : (
+            <p className="font-sans text-lg text-muted md:text-base lg:text-lg">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam,
+              quos. Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              Quisquam, quos. Lorem ipsum dolor sit amet consectetur adipisicing
+              elit. Quisquam, quos.
+            </p>
+          )}
         </div>
 
         <div className="relative h-[min(80vw,416px)] w-full md:h-auto md:min-h-130 md:w-1/2">
-          <Image
-            src={profileImage}
-            alt="Sobre o tatuador"
-            fill
-            className="object-cover"
-            sizes="(max-width: 768px) 100vw, 50vw"
-          />
+          {isLoading ? (
+            <Skeleton className="absolute inset-0 rounded-none" />
+          ) : (
+            <Image
+              src={profileImage}
+              alt="Sobre o tatuador"
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, 50vw"
+            />
+          )}
         </div>
       </div>
     </section>
