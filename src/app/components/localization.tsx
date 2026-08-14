@@ -20,12 +20,27 @@ export default function Localization({ isLoading = false }: LocalizationProps) {
             <h1 className="mb-4 mt-4 font-display text-2xl leading-none text-white md:text-2xl lg:text-4xl">
               Informações sobre o local
             </h1>
-            <p className="font-sans text-lg text-muted md:text-base lg:text-lg">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla ab
-              incidunt, provident facilis harum ducimus eveniet? Omnis placeat
-              voluptatem veritatis, amet, nulla cum necessitatibus praesentium
-              rem, aut libero molestiae ea!
-            </p>
+
+            {isLoading ? (
+              <div
+                className="flex flex-col gap-2.5"
+                aria-busy="true"
+                aria-live="polite"
+              >
+                <Skeleton className="h-4 w-full" />
+                <Skeleton className="h-4 w-full" />
+                <Skeleton className="h-4 w-11/12" />
+                <Skeleton className="h-4 w-4/5" />
+                <Skeleton className="h-4 w-3/5" />
+              </div>
+            ) : (
+              <p className="font-sans text-lg text-muted md:text-base lg:text-lg">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla ab
+                incidunt, provident facilis harum ducimus eveniet? Omnis placeat
+                voluptatem veritatis, amet, nulla cum necessitatibus praesentium
+                rem, aut libero molestiae ea!
+              </p>
+            )}
           </div>
 
           {isLoading ? (

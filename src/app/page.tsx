@@ -6,7 +6,7 @@ import CallToAction from "./components/call-to-action";
 import Footer from "./components/footer";
 
 // Troque para true enquanto o Prismic carrega; depois ligue ao estado real da fetch.
-const isLoading = true;
+const isLoading = false;
 
 export default function Home() {
   return (
