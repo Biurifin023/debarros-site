@@ -14,7 +14,7 @@ export default function HeroSection({ isLoading = false }: HeroSectionProps) {
       <Container>
         <Header />
       </Container>
-      <div className="relative h-[min(100vw,520px)] w-full md:h-[min(70vh,720px)]">
+      <div className="relative h-[min(100vw,520px)] w-full md:h-[min(96vh,1080px)]">
         {isLoading ? (
           <Skeleton className="absolute inset-0 rounded-none" />
         ) : (

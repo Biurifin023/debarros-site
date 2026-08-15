@@ -26,7 +26,7 @@ const portfolioImages: (StaticImageData | string)[] = [
 ];
 
 const AUTO_PLAY_MS = 3500;
-const SKELETON_COUNT = 5;
+const SKELETON_COUNT = 3;
 
 type PortfollioProps = {
   isLoading?: boolean;
@@ -114,7 +114,7 @@ export default function Portfollio({ isLoading = false }: PortfollioProps) {
               {Array.from({ length: SKELETON_COUNT }).map((_, index) => (
                 <Skeleton
                   key={index}
-                  className="aspect-3/4 w-[calc((100%-0.75rem)/2)] shrink-0 rounded-md md:w-[calc((100%-2rem)/3)] md:rounded-lg lg:w-[calc((100%-4rem)/5)]"
+                  className="aspect-3/4 w-full shrink-0 rounded-md md:w-[calc((100%-1rem)/2)] md:rounded-lg lg:w-[calc((100%-2rem)/3)]"
                 />
               ))}
             </div>
@@ -149,14 +149,14 @@ export default function Portfollio({ isLoading = false }: PortfollioProps) {
                 {slides.map((image, index) => (
                   <div
                     key={index}
-                    className="relative aspect-3/4 w-[calc((100%-0.75rem)/2)] shrink-0 overflow-hidden rounded-md md:w-[calc((100%-2rem)/3)] md:rounded-lg lg:w-[calc((100%-4rem)/5)]"
+                    className="relative aspect-3/4 w-full shrink-0 overflow-hidden rounded-md md:w-[calc((100%-1rem)/2)] md:rounded-lg lg:w-[calc((100%-2rem)/3)]"
                   >
                     <Image
                       src={image}
                       alt={`Trabalho do portfólio ${(index % total) + 1}`}
                       fill
                       className="object-cover"
-                      sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 20vw"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     />
                   </div>
                 ))}
