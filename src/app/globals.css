@@ -21,8 +21,32 @@
   --font-sans: var(--font-dm-sans), sans-serif;
   --font-mono: var(--font-ibm-plex-mono), monospace;
 }
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-muted) var(--color-surface);
+}
+
 html {
   scroll-behavior: smooth;
+}
+
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+*::-webkit-scrollbar-track {
+  background: var(--color-surface);
+}
+
+*::-webkit-scrollbar-thumb {
+  background: var(--color-accent);
+  border-radius: var(--radius-pill);
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background: var(--color-accent-hover);
 }
 
 body {
@@ -31,4 +55,13 @@ body {
   font-family: var(--font-display);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+
+label {
+  display: block;
+  margin-bottom: 0.35rem;
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  color: var(--color-muted);
 }

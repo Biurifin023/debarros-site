@@ -1,5 +1,37 @@
-export default function BtnSchedules() {
-    return (
-        <button className="bg-accent text-white px-4 py-2 rounded-md hover:bg-accent-hover transition-colors cursor-pointer w-fit">ORÇAMENTO</button>
-    )
+"use client";
+
+import { useState } from "react";
+import type { ButtonHTMLAttributes, ReactNode } from "react";
+import SchedulesModal from "../components/schedules-modal";
+
+type BtnSchedulesProps = ButtonHTMLAttributes<HTMLButtonElement> & {
+  children?: ReactNode;
+};
+
+export default function BtnSchedules({
+  className = "",
+  children = "ORÇAMENTO",
+  onClick,
+  type = "button",
+  ...props
+}: BtnSchedulesProps) {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <>
+      <button
+        {...props}
+        type={type}
+        className={`w-fit cursor-pointer rounded-md bg-accent px-4 py-2 text-white transition-colors hover:bg-accent-hover disabled:cursor-not-allowed disabled:opacity-60 ${className}`}
+        onClick={(event) => {
+          onClick?.(event);
+          setIsOpen(true);
+        }}
+      >
+        {children}
+      </button>
+
+      <SchedulesModal isOpen={isOpen} onClose={() => setIsOpen(false)} />
+    </>
+  );
 }
