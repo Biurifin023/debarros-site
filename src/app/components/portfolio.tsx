@@ -104,7 +104,7 @@ export default function Portfollio({ isLoading = false }: PortfollioProps) {
           Portfólio
         </h2>
 
-        <h1 className="mt-10 font-display text-2xl leading-none text-white md:text-5xl lg:text-6xl">
+        <h1 className="mt-10 font-display text-2xl leading-none text-white md:text-2xl lg:text-4xl">
           Veja alguns trabalhos
         </h1>
 

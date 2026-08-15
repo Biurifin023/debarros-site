@@ -15,7 +15,7 @@ export default function AboutSection({ isLoading = false }: AboutSectionProps) {
             Sobre
           </h2>
 
-          <h1 className="font-display text-2xl leading-none text-white md:text-5xl lg:text-6xl">
+          <h1 className="font-display text-2xl leading-none text-white md:text-2xl lg:text-4xl">
             Conheça o Tatuador
           </h1>
 
