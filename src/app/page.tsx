@@ -4,18 +4,22 @@ import Portfollio from "./components/portfolio";
 import Localization from "./components/localization";
 import CallToAction from "./components/call-to-action";
 import Footer from "./components/footer";
+import { createClient } from "@/prismicio";
 
-const isLoading = true;
+export default async function Home() {
+  const client = createClient();
+  const home = await client.getSingle("homepage")
 
-export default function Home() {
+  console.log(home.data);
+
   return (
     <>
-      <HeroSection isLoading={isLoading} />
-      <AboutSection isLoading={isLoading} />
-      <Portfollio isLoading={isLoading} />
-      <Localization isLoading={isLoading} />
+      <HeroSection />
+      <AboutSection />
+      <Portfollio />
+      <Localization />
       <CallToAction />
-      <Footer isLoading={isLoading} />
+      <Footer />
     </>
   );
 }
