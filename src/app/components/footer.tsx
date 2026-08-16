@@ -36,7 +36,7 @@ export default function Footer({ isLoading = false }: FooterProps) {
         <div className="flex items-center justify-center gap-8 md:flex-row md:items-end md:justify-between">
           <div className="flex flex-col items-center justify-center gap-2">
             <div className="flex flex-col">
-              <Image src={logo2} alt="Logo" width={100} height={100} />
+              <Image src={logo2} alt="Logo" width={70} height={70} />
               <p className="font-sans text-sm text-white/80">
                 Tatuagens sólidas e duradouras
               </p>

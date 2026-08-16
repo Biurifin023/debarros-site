@@ -11,7 +11,7 @@ const navLinks = [
 export default function Header() {
   return (
     <div className="flex items-center justify-between py-4">
-      <Image src={logo1} alt="Logo" width={100} height={100} />
+      <Image src={logo1} alt="Logo" width={80} height={80} />
       <nav className="hidden items-center gap-6 md:flex">
         {navLinks.map((link) => (
           <a

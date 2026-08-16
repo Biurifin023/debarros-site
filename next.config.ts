@@ -1,7 +1,16 @@
-import type { NextConfig } from "next";
+import type { NextConfig } from "next"; 
 
-const nextConfig: NextConfig = {
+const nextConfig: NextConfig = { 
   reactCompiler: true,
+  
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "images.prismic.io",
+      }
+    ]
+  },
   turbopack: {
     rules: {
       "*.JPG": { type: "asset" },

@@ -1,0 +1,94 @@
+{
+  "format": "custom",
+  "id": "profile",
+  "json": {
+    "Main": {
+      "name": {
+        "config": {
+          "label": "Name",
+          "placeholder": ""
+        },
+        "type": "Text"
+      },
+      "bio": {
+        "config": {
+          "label": "Bio",
+          "placeholder": ""
+        },
+        "type": "Text"
+      },
+      "avatar": {
+        "config": {
+          "constraint": {},
+          "label": "Avatar",
+          "thumbnails": []
+        },
+        "type": "Image"
+      },
+      "links": {
+        "config": {
+          "fields": {
+            "title": {
+              "config": {
+                "label": "Title",
+                "placeholder": ""
+              },
+              "type": "Text"
+            },
+            "url": {
+              "config": {
+                "allowTargetBlank": true,
+                "allowText": true,
+                "label": "Url",
+                "placeholder": "",
+                "repeat": false,
+                "select": null
+              },
+              "type": "Link"
+            }
+          },
+          "label": "Links",
+          "repeat": true
+        },
+        "type": "Group"
+      },
+      "socials": {
+        "config": {
+          "fields": {
+            "platform": {
+              "config": {
+                "default_value": "github",
+                "label": "Platform",
+                "options": [
+                  "github",
+                  "linkedin",
+                  "whatsapp",
+                  "email"
+                ],
+                "placeholder": ""
+              },
+              "type": "Select"
+            },
+            "url": {
+              "config": {
+                "allowTargetBlank": true,
+                "allowText": true,
+                "label": "Url",
+                "placeholder": "",
+                "repeat": false,
+                "select": null
+              },
+              "type": "Link"
+            }
+          },
+          "label": "Socials",
+          "repeat": true
+        },
+        "type": "Group"
+      }
+    }
+  },
+  "label": "Profile",
+  "repeatable": false,
+  "status": true
+}

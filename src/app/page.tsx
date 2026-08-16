@@ -5,7 +5,7 @@ import Localization from "./components/localization";
 import CallToAction from "./components/call-to-action";
 import Footer from "./components/footer";
 
-const isLoading = false;
+const isLoading = true;
 
 export default function Home() {
   return (
