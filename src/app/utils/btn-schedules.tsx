@@ -6,6 +6,7 @@ import SchedulesModal from "../components/schedules-modal";
 
 type BtnSchedulesProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   children?: ReactNode;
+  whatsappPhone?: string;
 };
 
 export default function BtnSchedules({
@@ -13,6 +14,7 @@ export default function BtnSchedules({
   children = "ORÇAMENTO",
   onClick,
   type = "button",
+  whatsappPhone,
   ...props
 }: BtnSchedulesProps) {
   const [isOpen, setIsOpen] = useState(false);
@@ -31,7 +33,11 @@ export default function BtnSchedules({
         {children}
       </button>
 
-      <SchedulesModal isOpen={isOpen} onClose={() => setIsOpen(false)} />
+      <SchedulesModal
+        isOpen={isOpen}
+        onClose={() => setIsOpen(false)}
+        whatsappPhone={whatsappPhone}
+      />
     </>
   );
 }

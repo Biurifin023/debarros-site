@@ -8,7 +8,7 @@ const navLinks = [
   { href: "#como-chegar", label: "Como chegar" },
 ];
 
-export default function Header() {
+export default function Header({ whatsappPhone }: { whatsappPhone?: string }) {
   return (
     <div className="flex items-center justify-between py-4">
       <Image src={logo1} alt="Logo" width={80} height={80} />
@@ -23,7 +23,7 @@ export default function Header() {
           </a>
         ))}
       </nav>
-      <BtnSchedules />
+      <BtnSchedules whatsappPhone={whatsappPhone} />
     </div>
   );
 }

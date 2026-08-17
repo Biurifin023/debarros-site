@@ -7,9 +7,14 @@ import SchedulesForm from "./schedules-form";
 type SchedulesModalProps = {
   isOpen: boolean;
   onClose: () => void;
+  whatsappPhone?: string;
 };
 
-export default function SchedulesModal({ isOpen, onClose }: SchedulesModalProps) {
+export default function SchedulesModal({
+  isOpen,
+  onClose,
+  whatsappPhone,
+}: SchedulesModalProps) {
   useEffect(() => {
     if (!isOpen) return;
 
@@ -60,7 +65,7 @@ export default function SchedulesModal({ isOpen, onClose }: SchedulesModalProps)
           </button>
         </div>
 
-        <SchedulesForm onSuccess={onClose} />
+        <SchedulesForm onSuccess={onClose} whatsappPhone={whatsappPhone} />
       </div>
     </div>,
     document.body

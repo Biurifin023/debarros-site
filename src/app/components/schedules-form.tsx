@@ -6,12 +6,37 @@ import { quoteSchema, type QuoteFormData } from "../schemas/quote-form";
 import Input from "../utils/input";
 import Select from "../utils/select";
 import Textarea from "../utils/textarea";
+import { DEFAULT_WHATSAPP_PHONE } from "../utils/whatsapp-phone";
 
 type SchedulesFormProps = {
   onSuccess?: () => void;
+  whatsappPhone?: string;
 };
 
-export default function SchedulesForm({ onSuccess }: SchedulesFormProps) {
+function buildWhatsappMessage(data: QuoteFormData) {
+  const estilo = data.estilo === "colorida" ? "Colorida" : "Preto e cinza";
+
+  return [
+    "Olá, gostaria de fazer um orçamento.",
+    "",
+    `Nome: ${data.nome}`,
+    `E-mail: ${data.email}`,
+    `Telefone: ${data.telefone}`,
+    `Estilo: ${estilo}`,
+    `Local do corpo: ${data.bodyLocal}`,
+    "",
+    "Ideia:",
+    data.description,
+    "",
+    "Referências:",
+    "Envie imagens ou links de referências do que você gostaria para a tatuagem.",
+  ].join("\n");
+}
+
+export default function SchedulesForm({
+  onSuccess,
+  whatsappPhone = DEFAULT_WHATSAPP_PHONE,
+}: SchedulesFormProps) {
   const {
     register,
     handleSubmit,
@@ -20,29 +45,14 @@ export default function SchedulesForm({ onSuccess }: SchedulesFormProps) {
     resolver: zodResolver(quoteSchema),
   });
 
-    function buildWhatsappMessage(data: QuoteFormData) {
-      const estilo = data.estilo === "colorida" ? "Colorida" : "Preto e cinza"
+  function onSubmit(data: QuoteFormData) {
+    const message = encodeURIComponent(buildWhatsappMessage(data));
 
-      return [
-        "Olá, gostaria de fazer um orçamento.",
-        "",
-        `Nome: ${data.nome}`,
-        `E-mail: ${data.email}`,
-        `Telefone: ${data.telefone}`,
-        `Estilo: ${estilo}`,
-        `Local do corpo: ${data.bodyLocal}`,
-        "",
-        "Ideia:", data.description,
-        "",
-        "Referências:", "Envie imagens ou links de referências do que você gostaria para a tatuagem.",
-      ].join("\n")
-    }
-
-  async function onSubmit(data: QuoteFormData) {
-    const phone = "5524998535387"
-    const message = encodeURIComponent(buildWhatsappMessage(data))
-
-    window.open(`https://wa.me/${phone}?text=${message}`, '_blank')
+    window.open(
+      `https://wa.me/${whatsappPhone}?text=${message}`,
+      "_blank",
+      "noopener,noreferrer",
+    );
     onSuccess?.();
   }
 
@@ -54,22 +64,31 @@ export default function SchedulesForm({ onSuccess }: SchedulesFormProps) {
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         <div>
           <label htmlFor="nome">Nome</label>
-          <Input 
-          placeholder="Digite seu nome"
-          id="nome" 
-          type="text" {...register("nome")} />
+          <Input
+            placeholder="Digite seu nome"
+            id="nome"
+            type="text"
+            {...register("nome")}
+          />
           {errors.nome && (
-            <p className="mt-1 font-sans text-sm text-accent">{errors.nome.message}</p>
+            <p className="mt-1 font-sans text-sm text-accent">
+              {errors.nome.message}
+            </p>
           )}
         </div>
 
         <div>
           <label htmlFor="email">E-mail</label>
-          <Input 
-          placeholder="Digite seu e-mail"
-          id="email" type="email" {...register("email")} />
+          <Input
+            placeholder="Digite seu e-mail"
+            id="email"
+            type="email"
+            {...register("email")}
+          />
           {errors.email && (
-            <p className="mt-1 font-sans text-sm text-accent">{errors.email.message}</p>
+            <p className="mt-1 font-sans text-sm text-accent">
+              {errors.email.message}
+            </p>
           )}
         </div>
       </div>
@@ -77,9 +96,12 @@ export default function SchedulesForm({ onSuccess }: SchedulesFormProps) {
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         <div>
           <label htmlFor="telefone">Telefone/WhatsApp</label>
-          <Input 
-          placeholder="(99) 99999-9999"
-          id="telefone" type="tel" {...register("telefone")} />
+          <Input
+            placeholder="(99) 99999-9999"
+            id="telefone"
+            type="tel"
+            {...register("telefone")}
+          />
           {errors.telefone && (
             <p className="mt-1 font-sans text-sm text-accent">
               {errors.telefone.message}
@@ -106,9 +128,12 @@ export default function SchedulesForm({ onSuccess }: SchedulesFormProps) {
 
       <div>
         <label htmlFor="bodyLocal">Local do corpo</label>
-        <Input 
-        placeholder="Ex: Peito, Ombro, etc."
-        id="bodyLocal" type="text" {...register("bodyLocal")} />
+        <Input
+          placeholder="Ex: Peito, Ombro, etc."
+          id="bodyLocal"
+          type="text"
+          {...register("bodyLocal")}
+        />
         {errors.bodyLocal && (
           <p className="mt-1 font-sans text-sm text-accent">
             {errors.bodyLocal.message}
@@ -118,7 +143,12 @@ export default function SchedulesForm({ onSuccess }: SchedulesFormProps) {
 
       <div>
         <label htmlFor="description">Descreva sua ideia</label>
-        <Textarea placeholder="Ex: Quero um dragão old school com fogo vermelho e detalhes em preto..." id="description" rows={5} {...register("description")} />
+        <Textarea
+          placeholder="Ex: Quero um dragão old school com fogo vermelho e detalhes em preto..."
+          id="description"
+          rows={5}
+          {...register("description")}
+        />
         {errors.description && (
           <p className="mt-1 font-sans text-sm text-accent">
             {errors.description.message}

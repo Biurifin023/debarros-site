@@ -7,13 +7,18 @@ import { ImageField } from "@prismicio/client";
 type HeroSectionProps = {
   isLoading?: boolean;
   image?: ImageField;
+  whatsappPhone?: string;
 };
 
-export default function HeroSection({ isLoading = false, image }: HeroSectionProps) {
+export default function HeroSection({
+  isLoading = false,
+  image,
+  whatsappPhone,
+}: HeroSectionProps) {
   return (
     <div className="flex w-full flex-col">
       <Container>
-        <Header />
+        <Header whatsappPhone={whatsappPhone} />
       </Container>
       <div className="relative h-[min(100vw,520px)] w-full md:h-[min(96vh,1080px)]">
         {isLoading ? (

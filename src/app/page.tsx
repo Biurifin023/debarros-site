@@ -5,6 +5,11 @@ import Location from "./components/location";
 import CallToAction from "./components/call-to-action";
 import Footer from "./components/footer";
 import { createClient } from "@/prismicio";
+import { asLink } from "@prismicio/client";
+import {
+  DEFAULT_WHATSAPP_PHONE,
+  parseWhatsappPhone,
+} from "./utils/whatsapp-phone";
 
 export default async function Home() {
   const client = createClient();
@@ -25,11 +30,16 @@ export default async function Home() {
     ].filter((img) => img.url),
   );
 
-  console.log(home.data);
+  const whatsappPhone =
+    parseWhatsappPhone(asLink(home.data.social_links[0]?.what)) ??
+    DEFAULT_WHATSAPP_PHONE;
 
   return (
     <>
-      <HeroSection image={home.data.hero_image} />
+      <HeroSection
+        image={home.data.hero_image}
+        whatsappPhone={whatsappPhone}
+      />
       <AboutSection
         image={home.data.profile_img}
         description={home.data.bio_description}
@@ -39,7 +49,7 @@ export default async function Home() {
         description={home.data.info_location}
         image={home.data.map_location}
       />
-      <CallToAction />
+      <CallToAction whatsappPhone={whatsappPhone} />
       <Footer links={home.data.social_links} />
     </>
   );
