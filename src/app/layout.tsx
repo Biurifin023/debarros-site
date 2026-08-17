@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     title: "De Barros Tattoo",
     description: "Tatuador com 8 anos de experiência em Volta Redonda. Estilos tradicionais americanos e japoneses. Peça seu orçamento.",
     images: [
-      { url: "/bg-hero-2.PNG"},
+      { url: "/bg-share.png"},
     ],
   },
 };
