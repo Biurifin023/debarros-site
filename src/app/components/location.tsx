@@ -17,8 +17,8 @@ export default function Location({ isLoading = false, description, image }: Loca
           Como chegar
         </h2>
 
-        <div className="mt-10 flex flex-col gap-4 md:flex-row md:items-stretch md:gap-6">
-          <div className="flex w-full flex-col justify-center rounded-md bg-surface p-4 md:w-1/2 md:p-6">
+        <div className="mt-10 flex flex-col gap-4 md:flex-row md:items-stretch md:gap-6 lg:gap-8">
+          <div className="flex min-h-64 w-full flex-col justify-center rounded-md bg-surface p-4 md:min-h-80 md:w-1/2 md:p-6 lg:min-h-96 lg:p-8 xl:min-h-112">
             <h1 className="mb-4 mt-4 font-display text-2xl leading-none text-white md:text-2xl lg:text-4xl">
               Informações sobre o local
             </h1>
@@ -44,7 +44,7 @@ export default function Location({ isLoading = false, description, image }: Loca
 
           {isLoading ? (
             <div
-              className="flex min-h-64 w-full overflow-hidden rounded-md bg-surface p-4 md:min-h-0 md:w-1/2 md:p-6"
+              className="flex min-h-64 w-full overflow-hidden rounded-md bg-surface p-4 md:min-h-80 md:w-1/2 md:p-6 lg:min-h-96 lg:p-8 xl:min-h-112"
               aria-busy="true"
               aria-live="polite"
             >
@@ -56,7 +56,7 @@ export default function Location({ isLoading = false, description, image }: Loca
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Abrir localização no Google Maps"
-              className="flex min-h-64 w-full overflow-hidden rounded-md bg-surface p-4 transition-opacity hover:opacity-90 md:min-h-0 md:w-1/2 md:p-6"
+              className="flex min-h-64 w-full overflow-hidden rounded-md bg-surface p-4 transition-opacity hover:opacity-90 md:min-h-80 md:w-1/2 md:p-6 lg:min-h-96 lg:p-8 xl:min-h-112"
             >
               <span className="relative block min-h-64 w-full flex-1 overflow-hidden rounded-md md:min-h-0">
                 <Image
