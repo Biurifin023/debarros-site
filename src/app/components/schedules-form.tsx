@@ -4,7 +4,6 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { quoteSchema, type QuoteFormData } from "../schemas/quote-form";
 import Input from "../utils/input";
-import FileInput from "../utils/file-input";
 import Select from "../utils/select";
 import Textarea from "../utils/textarea";
 
@@ -21,8 +20,29 @@ export default function SchedulesForm({ onSuccess }: SchedulesFormProps) {
     resolver: zodResolver(quoteSchema),
   });
 
+    function buildWhatsappMessage(data: QuoteFormData) {
+      const estilo = data.estilo === "colorida" ? "Colorida" : "Preto e cinza"
+
+      return [
+        "Olá, gostaria de fazer um orçamento.",
+        "",
+        `Nome: ${data.nome}`,
+        `E-mail: ${data.email}`,
+        `Telefone: ${data.telefone}`,
+        `Estilo: ${estilo}`,
+        `Local do corpo: ${data.bodyLocal}`,
+        "",
+        "Ideia:", data.description,
+        "",
+        "Referências:", "Envie imagens ou links de referências do que você gostaria para a tatuagem.",
+      ].join("\n")
+    }
+
   async function onSubmit(data: QuoteFormData) {
-    console.log(data);
+    const phone = "5524998535387"
+    const message = encodeURIComponent(buildWhatsappMessage(data))
+
+    window.open(`https://wa.me/${phone}?text=${message}`, '_blank')
     onSuccess?.();
   }
 
@@ -92,21 +112,6 @@ export default function SchedulesForm({ onSuccess }: SchedulesFormProps) {
         {errors.bodyLocal && (
           <p className="mt-1 font-sans text-sm text-accent">
             {errors.bodyLocal.message}
-          </p>
-        )}
-      </div>
-
-      <div>
-        <label htmlFor="references">Faça upload de referências</label>
-        <FileInput
-          id="references"
-          accept="image/*"
-          multiple
-          {...register("references")}
-        />
-        {errors.references && (
-          <p className="mt-1 font-sans text-sm text-accent">
-            {errors.references.message}
           </p>
         )}
       </div>

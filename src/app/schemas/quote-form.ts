@@ -8,16 +8,6 @@ export const quoteSchema = z.object({
     message: "Selecione o estilo",
   }),
   bodyLocal: z.string().min(2, "Informe o local do corpo"),
-  references: z
-    .custom<FileList>()
-    .optional()
-    .refine(
-      (files) =>
-        !files ||
-        files.length === 0 ||
-        Array.from(files).every((file) => file.size <= 5_000_000),
-      "Cada arquivo deve ter no máximo 5MB"
-    ),
   description: z.string().min(15, "Descreva um pouco mais a ideia"),
 });
 
