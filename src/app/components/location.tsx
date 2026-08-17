@@ -36,19 +36,19 @@ export default function Location({ isLoading = false, description, image }: Loca
                 <Skeleton className="h-4 w-3/5" />
               </div>
             ) : (
-              <p className="font-sans text-lg text-muted md:text-base lg:text-lg">
-              {description}
+              <p className="whitespace-pre-line font-sans text-lg text-muted md:text-base lg:text-lg">
+                {description}
               </p>
             )}
           </div>
 
           {isLoading ? (
             <div
-              className="relative w-full overflow-hidden rounded-md bg-surface p-4 md:w-1/2 md:p-6"
+              className="flex min-h-64 w-full overflow-hidden rounded-md bg-surface p-4 md:min-h-0 md:w-1/2 md:p-6"
               aria-busy="true"
               aria-live="polite"
             >
-              <Skeleton className="aspect-square w-full rounded-md" />
+              <Skeleton className="h-full min-h-64 w-full rounded-md md:min-h-0" />
             </div>
           ) : (
             <a
@@ -56,15 +56,17 @@ export default function Location({ isLoading = false, description, image }: Loca
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Abrir localização no Google Maps"
-              className="relative block w-full overflow-hidden rounded-md bg-surface p-4 transition-opacity hover:opacity-90 md:w-1/2 md:p-6"
+              className="flex min-h-64 w-full overflow-hidden rounded-md bg-surface p-4 transition-opacity hover:opacity-90 md:min-h-0 md:w-1/2 md:p-6"
             >
-              <Image
-                src={image?.url ?? ""}
-                alt={image?.alt ?? ""}
-                width={750}
-                height={750}
-                className="h-auto w-full rounded-md object-cover"
-              />
+              <span className="relative block min-h-64 w-full flex-1 overflow-hidden rounded-md md:min-h-0">
+                <Image
+                  src={image?.url ?? ""}
+                  alt={image?.alt ?? ""}
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                />
+              </span>
             </a>
           )}
         </div>

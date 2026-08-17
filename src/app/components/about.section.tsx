@@ -30,7 +30,7 @@ export default function AboutSection({ isLoading = false, description, image }: 
               <Skeleton className="h-4 w-3/5" />
             </div>
           ) : (
-            <p className="font-sans text-lg text-muted md:text-base lg:text-lg">
+            <p className="whitespace-pre-line font-sans text-lg text-muted md:text-base lg:text-lg">
               {description}
             </p>
           )}
