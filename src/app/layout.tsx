@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Archivo_Black, DM_Sans, IBM_Plex_Mono } from "next/font/google";
+import { PrismicPreview } from "@prismicio/next";
+import { repositoryName } from "@/prismicio";
 import "./globals.css";
 
 const archivoBlack = Archivo_Black({
@@ -31,6 +33,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${archivoBlack.variable} ${dmSans.variable} ${ibmPlexMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">{children}</body>
+      <PrismicPreview repositoryName={repositoryName} />
     </html>
   );
 }

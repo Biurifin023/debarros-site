@@ -1,40 +1,23 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
-import Image, { type StaticImageData } from "next/image";
+import Image from "next/image";
 import Container from "../utils/container";
 import BtnSeeMore from "../utils/btn-see-more";
 import { Skeleton } from "../utils/skeleton";
-import img1 from "../assets/img-1.jpeg";
-import img2 from "../assets/img-2.jpeg";
-import img3 from "../assets/img-3.jpeg";
-import img4 from "../assets/img-4.JPG";
-import img5 from "../assets/img-5.jpg";
-import img6 from "../assets/img-6.jpg";
-import img7 from "../assets/img-7.jpg";
-import img8 from "../assets/img-8.jpeg";
-
-const portfolioImages: (StaticImageData | string)[] = [
-  img1,
-  img2,
-  img3,
-  img4,
-  img5,
-  img6,
-  img7,
-  img8,
-];
+import { ImageField } from "@prismicio/client";
 
 const AUTO_PLAY_MS = 3500;
 const SKELETON_COUNT = 3;
 
 type PortfollioProps = {
   isLoading?: boolean;
+  images?: ImageField[];
 };
 
-export default function Portfollio({ isLoading = false }: PortfollioProps) {
-  const total = portfolioImages.length;
-  const slides = [...portfolioImages, ...portfolioImages];
+export default function Portfollio({ isLoading = false, images }: PortfollioProps) {
+  const total = images?.length ?? 0;
+  const slides = [...images ?? [], ...images ?? []];
 
   const [activeIndex, setActiveIndex] = useState(0);
   const [paused, setPaused] = useState(false);
@@ -66,7 +49,7 @@ export default function Portfollio({ isLoading = false }: PortfollioProps) {
   }, [isLoading]);
 
   useEffect(() => {
-    if (isLoading || paused) return;
+    if (isLoading || paused || total === 0) return;
 
     const timer = setInterval(() => {
       setWithTransition(true);
@@ -74,7 +57,7 @@ export default function Portfollio({ isLoading = false }: PortfollioProps) {
     }, AUTO_PLAY_MS);
 
     return () => clearInterval(timer);
-  }, [paused, isLoading]);
+  }, [paused, isLoading, total]);
 
   const handleTransitionEnd = useCallback(() => {
     if (activeIndex < total) return;
@@ -95,7 +78,7 @@ export default function Portfollio({ isLoading = false }: PortfollioProps) {
     setActiveIndex(index);
   };
 
-  const currentDot = activeIndex % total;
+  const currentDot = total === 0 ? 0 : activeIndex % total;
 
   return (
     <section id="portfolio" className="w-full bg-surface py-12 md:py-20 lg:py-28">
@@ -152,8 +135,8 @@ export default function Portfollio({ isLoading = false }: PortfollioProps) {
                     className="relative aspect-3/4 w-full shrink-0 overflow-hidden rounded-md md:w-[calc((100%-1rem)/2)] md:rounded-lg lg:w-[calc((100%-2rem)/3)]"
                   >
                     <Image
-                      src={image}
-                      alt={`Trabalho do portfólio ${(index % total) + 1}`}
+                      src={image?.url ?? ""}
+                      alt={image?.alt ?? ""}
                       fill
                       className="object-cover"
                       sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
@@ -164,7 +147,7 @@ export default function Portfollio({ isLoading = false }: PortfollioProps) {
             </div>
 
             <div className="mt-6 flex items-center justify-center gap-2">
-              {portfolioImages.map((_, index) => {
+              {images?.map((_, index) => {
                 const isActive = index === currentDot;
 
                 return (

@@ -3,33 +3,36 @@ import Container from "../utils/container";
 import logo2 from "../assets/logo-2.PNG";
 import { Skeleton } from "../utils/skeleton";
 import Image from "next/image";
-
-const socialLinks = [
-  {
-    href: "https://instagram.com/",
-    label: "Instagram",
-    icon: FaInstagram,
-    external: true,
-  },
-  {
-    href: "https://wa.me/",
-    label: "WhatsApp",
-    icon: FaWhatsapp,
-    external: true,
-  },
-  {
-    href: "mailto:contato@debarrostattoo.com",
-    label: "E-mail",
-    icon: FaEnvelope,
-    external: false,
-  },
-];
+import { asLink, type Content } from "@prismicio/client";
 
 type FooterProps = {
   isLoading?: boolean;
+  links?: Content.HomepageDocument["data"]["social_links"];
 };
 
-export default function Footer({ isLoading = false }: FooterProps) {
+export default function Footer({ isLoading = false, links }: FooterProps) {
+  const item = links?.[0];
+  const socialLinks = [
+    {
+      href: asLink(item?.instagram),
+      label: "Instagram",
+      icon: FaInstagram,
+      external: true,
+    },
+    {
+      href: asLink(item?.what),
+      label: "WhatsApp",
+      icon: FaWhatsapp,
+      external: true,
+    },
+    {
+      href: asLink(item?.email),
+      label: "E-mail",
+      icon: FaEnvelope,
+      external: false,
+    },
+  ].filter((link) => link.href);
+
   return (
     <footer className="bg-accent py-8">
       <Container>
@@ -57,7 +60,7 @@ export default function Footer({ isLoading = false }: FooterProps) {
                 return (
                   <a
                     key={link.label}
-                    href={link.href}
+                    href={link.href ?? undefined}
                     aria-label={link.label}
                     {...(link.external
                       ? { target: "_blank", rel: "noopener noreferrer" }

@@ -1,14 +1,15 @@
 import Image from "next/image";
-import bgHero from "@/app/assets/bg-hero-1.JPG";
 import Container from "../utils/container";
 import { Skeleton } from "../utils/skeleton";
 import Header from "./header";
+import { ImageField } from "@prismicio/client";
 
 type HeroSectionProps = {
   isLoading?: boolean;
+  image?: ImageField;
 };
 
-export default function HeroSection({ isLoading = false }: HeroSectionProps) {
+export default function HeroSection({ isLoading = false, image }: HeroSectionProps) {
   return (
     <div className="flex w-full flex-col">
       <Container>
@@ -19,8 +20,8 @@ export default function HeroSection({ isLoading = false }: HeroSectionProps) {
           <Skeleton className="absolute inset-0 rounded-none" />
         ) : (
           <Image
-            src={bgHero}
-            alt="Hero Section"
+            src={image?.url ?? ""}
+            alt={image?.alt ?? ""}
             fill
             priority
             className="object-cover"

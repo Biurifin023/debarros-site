@@ -1,12 +1,14 @@
 import Image from "next/image";
-import profileImage from "@/app/assets/profile-img.jpeg";
 import { Skeleton } from "../utils/skeleton";
+import type { ImageField, KeyTextField } from "@prismicio/client";
 
 type AboutSectionProps = {
   isLoading?: boolean;
+  description?: KeyTextField;
+  image?: ImageField;
 };
 
-export default function AboutSection({ isLoading = false }: AboutSectionProps) {
+export default function AboutSection({ isLoading = false, description, image }: AboutSectionProps) {
   return (
     <section id="sobre" className="w-full">
       <div className="flex w-full flex-col md:flex-row md:items-stretch">
@@ -29,10 +31,7 @@ export default function AboutSection({ isLoading = false }: AboutSectionProps) {
             </div>
           ) : (
             <p className="font-sans text-lg text-muted md:text-base lg:text-lg">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam,
-              quos. Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Quisquam, quos. Lorem ipsum dolor sit amet consectetur adipisicing
-              elit. Quisquam, quos.
+              {description}
             </p>
           )}
         </div>
@@ -42,8 +41,8 @@ export default function AboutSection({ isLoading = false }: AboutSectionProps) {
             <Skeleton className="absolute inset-0 rounded-none" />
           ) : (
             <Image
-              src={profileImage}
-              alt="Sobre o tatuador"
+              src={image?.url ?? ""}
+              alt={image?.alt ?? ""}
               fill
               className="object-cover"
               sizes="(max-width: 768px) 100vw, 50vw"

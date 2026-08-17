@@ -1,13 +1,15 @@
 import Container from "../utils/container";
 import Image from "next/image";
-import map from "../assets/maps.png";
 import { Skeleton } from "../utils/skeleton";
+import type { ImageField, KeyTextField } from "@prismicio/client";
 
-type LocalizationProps = {
+type LocationProps = {
   isLoading?: boolean;
+  description?: KeyTextField;
+  image?: ImageField;
 };
 
-export default function Localization({ isLoading = false }: LocalizationProps) {
+export default function Location({ isLoading = false, description, image }: LocationProps) {
   return (
     <div id="como-chegar" className="w-full py-12 md:py-20 lg:py-28">
       <Container>
@@ -35,10 +37,7 @@ export default function Localization({ isLoading = false }: LocalizationProps) {
               </div>
             ) : (
               <p className="font-sans text-lg text-muted md:text-base lg:text-lg">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla ab
-                incidunt, provident facilis harum ducimus eveniet? Omnis placeat
-                voluptatem veritatis, amet, nulla cum necessitatibus praesentium
-                rem, aut libero molestiae ea!
+              {description}
               </p>
             )}
           </div>
@@ -60,8 +59,8 @@ export default function Localization({ isLoading = false }: LocalizationProps) {
               className="relative block w-full overflow-hidden rounded-md bg-surface p-4 transition-opacity hover:opacity-90 md:w-1/2 md:p-6"
             >
               <Image
-                src={map}
-                alt="Mapa do estúdio"
+                src={image?.url ?? ""}
+                alt={image?.alt ?? ""}
                 width={750}
                 height={750}
                 className="h-auto w-full rounded-md object-cover"
